@@ -52,7 +52,7 @@ fun LemonApplication() {
 fun LemonWithButtonAndImage(modifier: Modifier) {
 
     var result by rememberSaveable {
-        mutableStateOf (1)
+        mutableStateOf(1)
     }
 
     val imageResource = when (result) {
@@ -62,9 +62,16 @@ fun LemonWithButtonAndImage(modifier: Modifier) {
         else -> R.drawable.lemon_restart
     }
 
+    val textResource = when (result) {
+        1 -> R.string.lemon_content_description
+        2 -> R.string.lemon_squeeze
+        3 -> R.string.lemon_made
+        else -> R.string.lemon_empty
+    }
+
 
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = stringResource(R.string.lemon_content_description), fontSize = 18.sp)
+        Text(text = stringResource(textResource), fontSize = 18.sp)
         Spacer(modifier = Modifier.height(16.dp))
         Card(border = BorderStroke(2.dp, color = Color(105, 205, 216)),
             onClick = {
